@@ -231,14 +231,14 @@ func (ovs OvsdbClient) ListDbs() ([]string, error) {
 // RFC 7047 : transact
 func (ovs OvsdbClient) Transact(database string, operation ...Operation) ([]OperationResult, error) {
 	var reply []OperationResult
-	db, ok := ovs.Schema[database]
-	if !ok {
-		return nil, errors.New("invalid Database Schema")
-	}
+//	db, ok := ovs.Schema[database]
+//	if !ok {
+//		return nil, errors.New("invalid Database Schema")
+//	}
 
-	if ok := db.validateOperations(operation...); !ok {
-		return nil, errors.New("Validation failed for the operation")
-	}
+//	if ok := db.validateOperations(operation...); !ok {
+//		return nil, errors.New("Validation failed for the operation")
+//	}
 
 	args := NewTransactArgs(database, operation...)
 	err := ovs.rpcClient.Call("transact", args, &reply)
